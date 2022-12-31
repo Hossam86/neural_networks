@@ -18,8 +18,9 @@ Layer::Layer(const std::vector<int> &layers, double bias, double eta) : layers(l
     }
 }
 
-void Layer::print_weights() {
-    for (int i = 0; i < network.size(); ++i) {
+void
+Layer::print_weights() {
+    for (int i = 1; i < network.size(); ++i) {
         for (int j = 0; j < layers[i]; ++j) {
             cout << "Layer " << i + 1 << " neuron " << j << ": ";
             for (auto &it: network[i][j].weights)
@@ -31,10 +32,25 @@ void Layer::print_weights() {
     cout << endl;
 }
 
-double Layer::bp(vector<double> x, vector<double> y) {
+double
+Layer::bp(vector<double> x, vector<double> y) {
     return 0;
 }
 
-void Layer::set_weights(vector < vector < vector < double
->>> &w_init) {
+void
+Layer::set_weights(vector<vector<vector<double>>> w_init) {
+    for (int i = 0; i < w_init.size(); ++i) {
+        for (int j = 0; j < w_init[i].size(); ++j) {
+            network[i + 1][j].setWeights(w_init[i][j]);
+        }
+    }
+}
+
+vector<double> Layer::run(vector<double> x) {
+    values[0] = x;
+    for (int i = 1; i < network.size(); ++i)
+        for (int j = 0; j < layers[i]; ++j)
+            values[i][j] = network[i][j].run(values[i - 1]);
+
+    return values.back();
 }

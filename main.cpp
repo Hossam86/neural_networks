@@ -1,18 +1,37 @@
 #include <iostream>
 #include "Perceptron.h"
+#include "Layer.h"
+
+using namespace std;
 
 int main() {
     srand(time(NULL));
     rand();
     std::cout << "\n \n....Logic Gate Example.......\n \n";
     Perceptron *p = new Perceptron(2);
-    p->setWeights({20.0, 20.0, -15.0});
+    p->setWeights({10, 10, -15}); // AND
+    p->setWeights({15, 15, -10}); // OR
+    p->setWeights({-15, -15, 10}); // NOR
+    p->setWeights({-10, -10, -15}); // NAND
 
-    std::cout << "Gate: " << std::endl;
-    std::cout << p->run({0,0}) <<std::endl;
-    std::cout << p->run({0,1}) <<std::endl;
-    std::cout << p->run({1,0}) <<std::endl;
-    std::cout << p->run({1,1}) <<std::endl;
+    cout << "Gate: " << std::endl;
+    cout << p->run({0, 0}) << endl;
+    cout << p->run({0, 1}) << endl;
+    cout << p->run({1, 0}) << endl;
+    cout << p->run({1, 1}) << endl;
+
+    std::cout << "\n\n --------hardcoded Xor Example --------\n\n";
+    Layer mlp = Layer({2, 2, 1});
+    mlp.set_weights({{{-10, -10, 15}, {15, 15, -10}},
+                     {{10,  10,  -15}}});
+    cout << "Hard coded weights:\n";
+    mlp.print_weights();
+
+    cout << "XOR : " << endl;
+    cout << "0 0 = " << mlp.run({0, 0})[0] << endl;
+    cout << "0 0 = " << mlp.run({0, 1})[0] << endl;
+    cout << "0 0 = " << mlp.run({1, 0})[0] << endl;
+    cout << "0 0 = " << mlp.run({1, 1})[0] << endl;
 
     return 0;
 }
