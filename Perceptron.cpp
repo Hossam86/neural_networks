@@ -3,7 +3,7 @@
 //
 
 #include <random>
-#include "MultiLayerPerceptron.h"
+#include "Perceptron.h"
 
 double
 frand() {
