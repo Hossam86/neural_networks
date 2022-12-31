@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Perceptron.h"
-#include "Layer.h"
+#include "Multi_Layer.h"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ int main() {
     cout << p->run({1, 1}) << endl;
 
     std::cout << "\n\n --------hardcoded Xor Example --------\n\n";
-    Layer mlp = Layer({2, 2, 1});
+    Multi_Layer mlp = Multi_Layer({2, 2, 1});
     mlp.set_weights({{{-10, -10, 15}, {15, 15, -10}},
                      {{10,  10,  -15}}});
     cout << "Hard coded weights:\n";
