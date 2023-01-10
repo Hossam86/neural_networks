@@ -24,8 +24,9 @@ public:
     void
     print_weights();
 
-    vector<double> run(vector <double> x);
+    vector<double> run(vector<double> x);
 
+    // Run a single (x, y) pair with the backpropagation algorithm.
     double
     bp(vector<double> x, vector<double> y);
 

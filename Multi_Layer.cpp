@@ -35,6 +35,21 @@ Multi_Layer::print_weights() {
 
 double
 Multi_Layer::bp(vector<double> x, vector<double> y) {
+    // backpropagation step by step.
+    // step 1: Feed a sample to the network
+    vector<double> outputs = run(x);
+
+    // step 2: Calculate the MSE
+    vector<double> error;
+    double MSE = 0.0;
+    for (int i = 0; i < y.size(); ++i) {
+        error.push_back(outputs[i] - y[i]);
+        MSE += error[i] * error[i];
+    }
+    MSE /= layers.back();
+
+
+
     return 0;
 }
 
