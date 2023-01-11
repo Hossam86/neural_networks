@@ -48,8 +48,10 @@ Multi_Layer::bp(vector<double> x, vector<double> y) {
     }
     MSE /= layers.back();
 
-
-
+    // step 3: Calculate the output error terms
+    for (int i = 0; i < outputs.size(); ++i) {
+        d.back()[i] = outputs[i] * (1 - outputs[i]) * error[i];
+    }
     return 0;
 }
 
